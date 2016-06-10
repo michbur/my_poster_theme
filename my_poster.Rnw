@@ -10,6 +10,9 @@
 \usepackage{array,booktabs,tabularx}
 \usepackage{epstopdf}
 \usepackage{colortbl, xcolor}
+% consider commenting me out ----------------------------------------------------
+\usepackage{lipsum}
+% -------------------------------------------------------------------------------
 \newcolumntype{Z}{>{\centering\arraybackslash}X}
 
 % rysunki
@@ -90,15 +93,15 @@ cool_theme <- theme(plot.background=element_rect(fill = "transparent",
 
 
 \date{}
-\author{Micha\l{} Burdukiewicz\inst{1}, Piotr Sobczyk\inst{2}, Pawe\l{} Mackiewicz\inst{1} and Ma\l{}gorzata Kotulska\inst{3}\\
+\author{Micha\l{} Burdukiewicz\inst{1}, John Doe\inst{2} and Jane Doe\inst{3}\\
 \small{*michalburdukiewicz@gmail.com}}
 
 
 \institute{\small{\textsuperscript{1}University of Wroc\l{}aw, Department of Genomics 
 
-\textsuperscript{2}Wroc\l{}aw University of Technology, Faculty of Pure and Applied Mathematics
+\textsuperscript{2}Wroc\l{}aw University of Something, Faculty of Something
 
-\textsuperscript{3}Wroc\l{}aw University of Technology, Department of Biomedical Engineering}
+\textsuperscript{3}Wroc\l{}aw University of Something, Faculty of Something Else}
 }
 }
 \title{\huge biogram: a toolkit for biological n-gram analysis}
@@ -111,11 +114,12 @@ cool_theme <- theme(plot.background=element_rect(fill = "transparent",
 \parbox[t][\columnheight]{\textwidth}
 {
 \begin{block}{Introduction}
-N-grams (k-tuples) are vectors of n characters derived from input sequence(s). They may form continuous sub-sequences or be discontinuous. 
-Important n-gram parameter is its position. Instead of just counting n-grams, one may want to count how many n-grams occur at a given position in multiple (e.g. related) sequences.
+\lipsum[1]
 
-Originally developed for natural language processing, n-grams are also used in genomics~\citep{fang2011}, transcriptomics~\citep{wang2014} and proteomics~\citep{guo2014}.
+    \end{block}
 
+
+\begin{block}{Tables in R}
 
 \small{
        \begin{columns}[c] % the "c" option specifies center vertical alignment
@@ -152,27 +156,12 @@ print(xtable(unis, caption = "Unigram counts.", digits = 0), include.rownames = 
 
     \end{columns}
 
-<<echo = FALSE,message=FALSE,results='asis'>>=
-    
-unis <- count_ngrams(sample_seq, 1, c("A", "C", "G", "T"), pos = TRUE)
-unis <- data.frame(as.matrix(unis))[, 1L:13]
-colnames(unis) <- substr(sub("X", "P", colnames(unis)), 0, 4)
-rownames(unis) <- paste0("S", 1L:nrow(sample_seq))
-print(xtable(unis, caption = "A fraction of possible unigrams with position information.", digits = 0), 
-      include.rownames = TRUE,
-      booktabs = TRUE, add.to.row = list(pos = as.list(rws), command = col))
-@
 }    
     \end{block}
 
 
-\begin{block}{Curse of dimensionality}
+\begin{block}{Equation}
     
-Even when we limit ourselves to only continuous positioned n-grams build on $m$ possible
-characters, feature space growths rapidly with the number of elements in n-gram
-($n$) and the length of the sequence ($L$).    
-    
-The number of possible positioned n-grams: 
 
 \begin{center}
 \scalebox{0.85}{
@@ -180,10 +169,12 @@ $
 n_{\text{max}} = L \times m^n
 $
 }
+\end{center}
 
-\\
+\end{block}
 
 
+\begin{block}{R plot}
 
 <<echo = FALSE,message=FALSE,fig.align='center',fig.width=14,fig.height=6>>=
 library(reshape2)
@@ -203,14 +194,13 @@ ggplot(dat, aes(x = n, y = n_max, fill = L, col = L)) +
 
 @
 
-\end{center}
     \end{block}
     \vfill
     
     \begin{block}{Reducing number of n-grams}
     \begin{figure}
     \centering
-    \includegraphics[width=0.5\columnwidth]{biogram_figures/biogram_scheme.eps} 
+    \includegraphics[width=0.5\columnwidth]{static_figure/example.png} 
     \end{figure}
 
 A) Input data: peptides with a known status (e.g. amyloid/nonamyloid). 
@@ -221,14 +211,6 @@ C) Reduction of the amino acid alphabet according to an encoding. The number of 
       
     \end{block}
     \vfill
- 
- \begin{block}{Bibliography}
-  \tiny{
-  \bibliographystyle{apalike}
-  \bibliography{references}
-  }
-  \end{block}
-  \vfill   
 
 }
 \end{minipage}
@@ -244,58 +226,6 @@ C) Reduction of the amino acid alphabet according to an encoding. The number of 
 \parbox[t][\columnheight]{\textwidth}
 {
 
-
-
-
-
-
-%' \begin{block}{2-gram frequencies in sequences}
-%' 
-%' <<specSensPlot2, echo = FALSE, message=FALSE, fig.height=8, fig.width=14>>=
-%' #ggplot(seq_inter_ct, aes(x = len, y = prop, fill = tar, label = paste0(round(prop, 4) * 100, "%"))) +
-%' load("specsens.RData")
-%' ggplot(filter(amylo_freq, n == 2), aes(x = variable, y = freq, fill = tar, colour = tar)) +
-%'   geom_bar(stat = "identity", position = "dodge") + 
-%'   scale_y_continuous("Frequency") +
-%'   scale_x_discrete("Group ID\n") + 
-%'   scale_fill_manual("Amyloid", values = c("no" = "skyblue", "yes" = "tan2")) +
-%'   scale_colour_manual("Amyloid", values = c("no" = "skyblue", "yes" = "tan2")) +
-%'   facet_wrap(~ enc, scales = "free_x", ncol = 1) +
-%'   guides(colour = FALSE) +
-%'   cool_theme
-%' @
-%' 
-%' \end{block}
-%' \vfill
-
-
-    \begin{block}{Selection of important n-grams}
-    Model and statistic independent permutation tests can be used to filter features obtained through counting n-grams.
-    
-    During a permutation test class labels are randomly exchanged during computation of a significance statistic. p-values are defined as:
-    
-\begin{center}
-\scalebox{0.85}{
-$      
-\textnormal{p-value} = \frac{N_{T_P > T_R}}{N}
-$
-}
-\end{center}
-
-where $N_{T_P > T_R}$ is number of times when $T_P$ (permuted test statistic) was more extreme than $T_R$ (test statistic for non-permuted data).
-
-Permutation tests are computationally expensive (especially considering precise estimation of small p-values, because the number of permutations is inversely proportional to the interval between p-values).
-
-\medskip
-
-\textbf{Qui}ck \textbf{P}ermutation \textbf{T}est (QuiPT) thanks to the unique parameterization replaces a permutation test with the exact two-sided Fisher's test~\citep{lehmann1986testing} reducing the computation cost. 
-      
-    \end{block}
-    \vfill
-
-
-
- 
 \begin{block}{signalHsmm -  prediction of signal peptides}
 Signal peptides are n-terminal guiding sequences with three distinguishable regions: n-, h- and c-region. Using the n-gram approach we created \textit{signalHsmm}, a software for prediction of signal peptides.
 
@@ -402,7 +332,13 @@ This research was partially funded by the KNOW Consortium and National Science C
 \end{block}
 \vfill
 
-
+ \begin{block}{Bibliography}
+  \tiny{
+  \bibliographystyle{apalike}
+  \bibliography{references}
+  }
+  \end{block}
+  \vfill  
 
 
 }
