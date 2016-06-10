@@ -225,7 +225,7 @@ C) Reduction of the amino acid alphabet according to an encoding. The number of 
  \begin{block}{Bibliography}
   \tiny{
   \bibliographystyle{apalike}
-  \bibliography{amyloids}
+  \bibliography{references}
   }
   \end{block}
   \vfill   
