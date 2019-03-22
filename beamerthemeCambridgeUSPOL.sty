@@ -15,11 +15,56 @@
 \useinnertheme[shadow=true]{rounded}
 \useoutertheme{infolines}
 \usecolortheme{beaver}
+\usepackage{color}
 
-%\setbeamercolor{headline}{fg=black,bg=darkred}
-\setbeamercolor{title in headline}{fg=darkred}
-\setbeamercolor{author in headline}{fg=black}
-\setbeamercolor{institute in headline}{fg=darkred}
+%!!!!!!!!!!   REGUŁA MAX. 3 KOLORÓW NA POSTERZE  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+% ------------------------------------------------------------------------ Definiujemy nasze kolory
+\definecolor{red1}{RGB}{254,240,217} % --------------- \definecolor{dowolna_nazwa}{RGB}{wartości_RGB_dla_koloru}
+\definecolor{red2}{RGB}{253,204,138}
+\definecolor{red3}{RGB}{252,141,89}
+\definecolor{red4}{RGB}{227,74,51}
+\definecolor{red5}{RGB}{179,0,0}
+\definecolor{super_kolor_turbo}{RGB}{157, 147, 201}
+\definecolor{darkred}{RGB}{179,1,1}
+\usecolortheme{seagull}
+\useinnertheme{rectangles}
+\definecolor{indygo}{RGB}{75,0,130}
+\definecolor{navy}{RGB}{0,0,128}
+% \definecolor{}{RGB}{}
+% \definecolor{}{RGB}{}
+
+% --------------------------------------------------------------------- kolory w nagłówku
+\setbeamercolor{title in headline}{fg=navy} % -------- tytuł
+\setbeamercolor{author in headline}{fg=black} % -------- autor
+\setbeamercolor{institute in headline}{fg=black} % --------- instytut
+%\setbeamercolor{block body}{fg=black}
+
+
+% ----------------------------------------------------- kolory naszych sekcji
+\setbeamercolor{block title}{fg=white, bg=navy}  % ---------------- kolor liter, kolor paska w klocku
+\setbeamercolor{block body}{fg=black, bg=white} % -------------------- kolor liter, kolor tła w klocku
+\setbeamercolor{local structure}{fg=darkred}
+
+
+%---------------------------------------------------------------------------------------------------------------------
+
+\setbeamercolor{item projected}{bg=darkred}
+\setbeamertemplate{caption}{\insertcaption} 
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{transparent}
+
+\setbeamercolor*{enumerate item}{fg=darkred} % ----------------- kolorki dla enumerate i itemize
+\setbeamercolor*{enumerate subitem}{fg=darkred}
+\setbeamercolor*{enumerate subsubitem}{fg=darkred}
+
+\setbeamercolor*{itemize item}{fg=darkred}
+\setbeamercolor*{itemize subitem}{fg=darkred}
+\setbeamercolor*{itemize subsubitem}{fg=darkred}
+
+%----------------------------------------------------------------------------------------------------------------------
 
 \setbeamertemplate{headline}{  
   \leavevmode

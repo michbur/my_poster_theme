@@ -32,26 +32,8 @@
 % ...
 %
 
-\usecolortheme{seagull}
-\useinnertheme{rectangles}
-\setbeamercolor{item projected}{bg=darkred}
-% \setbeamertemplate{enumerate items}[default]
-\setbeamertemplate{caption}{\insertcaption} 
-\setbeamertemplate{navigation symbols}{}
-\setbeamercovered{transparent}
-\setbeamercolor{block title}{fg=darkred}
-\setbeamercolor{local structure}{fg=darkred}
-
-\setbeamercolor*{enumerate item}{fg=darkred}
-\setbeamercolor*{enumerate subitem}{fg=darkred}
-\setbeamercolor*{enumerate subsubitem}{fg=darkred}
-
-\setbeamercolor*{itemize item}{fg=darkred}
-\setbeamercolor*{itemize subitem}{fg=darkred}
-\setbeamercolor*{itemize subsubitem}{fg=darkred}
-
 \newlength{\columnheight}
-\setlength{\columnheight}{96cm}
+\setlength{\columnheight}{96cm}                 % Wysokość sekcji na bloki (Więcej miejsca na tytuł i autorów)
 \renewcommand{\thetable}{}
 \def\andname{,}
 \authornote{}
@@ -64,6 +46,8 @@
 }
 
 \begin{document}
+
+% Tu można wrzucić biblioteki, czy inne skrypty. Nie wyświetli się na posterze. Ale można biblioteki dodać też dalej w bokach.
 
 <<knitrIntro, echo = FALSE, message=FALSE,warning=FALSE>>=
 source("my_ggplot_theme.R")
@@ -108,11 +92,22 @@ cool_theme <- theme(plot.background=element_rect(fill = "transparent",
 
 \begin{frame}
 \begin{columns}
-\begin{column}{.485\textwidth}
+\begin{column}{.485\textwidth}                               % szerokość kolumny lewej
 \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
 \begin{minipage}[T]{.95\textwidth}
 \parbox[t][\columnheight]{\textwidth}
 {
+
+% !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Przykładowy blok
+% \begin{block}{Nazwa sekcji}
+% 
+% Tekst, rysunek, tabela albo skrypt
+% 
+% \end{block}
+% \vfill
+
+
+
 \begin{block}{Introduction}
 \lipsum[1]
 
@@ -220,7 +215,7 @@ C) Reduction of the amino acid alphabet according to an encoding. The number of 
 
 %new column ------------------------------------------------------    
 
-\begin{column}{.51\textwidth}
+\begin{column}{.51\textwidth}                                 % szerokość kolumny prawej
 \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
 \begin{minipage}[T]{.95\textwidth}  
 \parbox[t][\columnheight]{\textwidth}
